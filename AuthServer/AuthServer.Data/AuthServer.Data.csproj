@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AuthServer.Core\AuthServer.Core.csproj" />
+  </ItemGroup>
+
 </Project>
