@@ -1,0 +1,6 @@
+@AuthServer.MiniAPI3_HostAddress = http://localhost:5239
+
+GET {{AuthServer.MiniAPI3_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
