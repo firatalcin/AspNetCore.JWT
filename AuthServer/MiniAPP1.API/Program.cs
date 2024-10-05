@@ -1,5 +1,5 @@
 
-namespace AuthServer.MiniAPI2
+namespace MiniAPP1.API
 {
     public class Program
     {
