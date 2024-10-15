@@ -61,9 +61,18 @@ namespace AuthServer.Service.Services
             return Response<TokenDto>.Success(token, 200, true);
         }
 
-        public Task<Response<ClientTokenDto>> CreateTokenByClient(ClientLoginDto loginDto)
+        public Response<ClientTokenDto> CreateTokenByClient(ClientLoginDto loginDto)
         {
-            throw new NotImplementedException();
+            var client = _clients.SingleOrDefault(x => x.Id == loginDto.ClientId && x.Secret == loginDto.ClientSecret);
+
+            if(client == null)
+            {
+                return Response<ClientTokenDto>.Fail(new ErrorDto("ClientId or ClientSecret not found", true), 404, true);
+            }
+
+            var token = _tokenService.CreateTokenByClient(client);
+
+            return Response<ClientTokenDto>.Success(token, 200, true);
         }
 
         public Task<Response<TokenDto>> CreateTokenByRefreshToken(string refreshToken)
