@@ -1,4 +1,7 @@
 
+using JWTApp.Back.Persistance.Context;
+using Microsoft.EntityFrameworkCore;
+
 namespace JWTApp.Back
 {
     public class Program
@@ -13,6 +16,10 @@ namespace JWTApp.Back
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddDbContext<AppDbContext>(opt =>
+            {
+                opt.UseSqlServer(builder.Configuration.GetConnectionString("local"));
+            });
 
             var app = builder.Build();
 
