@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace JWTApp.Back.Core.Application
+namespace JWTApp.Back.Core.Application.Interfaces
 {
     public interface IGenericRepository<T> where T : class, new()
     {

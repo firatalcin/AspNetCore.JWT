@@ -1,4 +1,4 @@
-﻿using JWTApp.Back.Core.Application;
+﻿using JWTApp.Back.Core.Application.Interfaces;
 using JWTApp.Back.Persistance.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
