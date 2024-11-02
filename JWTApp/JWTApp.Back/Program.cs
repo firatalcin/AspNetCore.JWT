@@ -35,7 +35,8 @@ namespace JWTApp.Back
             {
                 opt.AddProfiles(new List<Profile>()
                 {
-                    new ProductProfile()
+                    new ProductProfile(),
+                    new CategoryProfile()
                 });
             });
 

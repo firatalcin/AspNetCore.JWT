@@ -1,4 +1,5 @@
-﻿using JWTApp.Back.Core.Application.Features.CQRS.Queries;
+﻿using JWTApp.Back.Core.Application.Features.CQRS.Commands;
+using JWTApp.Back.Core.Application.Features.CQRS.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,6 +28,27 @@ namespace JWTApp.Back.Controllers
         {
             var result = await _mediator.Send(new GetCategoryQueryRequest(id));
             return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(CreateCategoryCommandRequest request)
+        {
+            await _mediator.Send(request); 
+            return Created("", request);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Remove(int id)
+        {
+            await _mediator.Send(new DeleteCategoryCommandRequest(id));
+            return NoContent();
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update(UpdateCategoryCommandRequest request)
+        {
+            await _mediator.Send(request);
+            return NoContent();
         }
     }
 }
