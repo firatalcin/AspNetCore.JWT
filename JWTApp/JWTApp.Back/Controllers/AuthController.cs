@@ -1,4 +1,5 @@
 ﻿using JWTApp.Back.Core.Application.Features.CQRS.Commands;
+using JWTApp.Back.Core.Application.Features.CQRS.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +22,20 @@ namespace JWTApp.Back.Controllers
         {
             await _mediator.Send(request);
             return Ok();
+        }
+
+        [HttpPost("Login")]
+        public async Task<IActionResult> Login(CheckUserQueryRequest request)
+        {
+            var dto = await _mediator.Send(request);
+            if (dto.IsExist)
+            {
+                return Created("", "token oluşturuldu");
+            }
+            else
+            {
+                return BadRequest("Kullanıcı adı veya şifre hatalı");
+            }
         }
     }
 }
