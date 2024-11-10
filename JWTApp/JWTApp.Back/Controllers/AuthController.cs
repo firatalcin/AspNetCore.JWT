@@ -1,5 +1,6 @@
 ﻿using JWTApp.Back.Core.Application.Features.CQRS.Commands;
 using JWTApp.Back.Core.Application.Features.CQRS.Queries;
+using JWTApp.Back.Infrastructure.Tools;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -30,7 +31,7 @@ namespace JWTApp.Back.Controllers
             var dto = await _mediator.Send(request);
             if (dto.IsExist)
             {
-                return Created("", "token oluşturuldu");
+                return Created("", JwtTokenGenerator.GenerateToken(dto));
             }
             else
             {

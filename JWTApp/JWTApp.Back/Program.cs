@@ -1,12 +1,12 @@
 using AutoMapper;
 using JWTApp.Back.Core.Application.Interfaces;
 using JWTApp.Back.Core.Application.Mappings;
+using JWTApp.Back.Infrastructure.Tools;
 using JWTApp.Back.Persistance.Context;
 using JWTApp.Back.Persistance.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using System.Reflection;
 using System.Text;
 
 namespace JWTApp.Back
@@ -25,13 +25,13 @@ namespace JWTApp.Back
                     opt.RequireHttpsMetadata = false;
                     opt.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                     {
-                        ValidateAudience = true,
-                        ValidateIssuer = true,
+                        ValidAudience = JwtTokenDefaults.ValidAudience,
+                        ValidIssuer = JwtTokenDefaults.ValidIssuer,
+                        ClockSkew = TimeSpan.Zero,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtTokenDefaults.Key)),
                         ValidateIssuerSigningKey = true,
-                        ValidAudience = builder.Configuration.GetSection("Token:Audience").Value.ToString(),
-                        ValidIssuer = builder.Configuration.GetSection("Token:Issuer").Value.ToString(),
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetSection("Token:Key").Value.ToString())),
                         ValidateLifetime = true,
+
                     };
                 });
 

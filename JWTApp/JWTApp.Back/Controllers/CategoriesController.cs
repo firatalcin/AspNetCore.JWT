@@ -1,10 +1,12 @@
 ﻿using JWTApp.Back.Core.Application.Features.CQRS.Commands;
 using JWTApp.Back.Core.Application.Features.CQRS.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JWTApp.Back.Controllers
 {
+    [Authorize(Roles = "Admin,Member")]
     [Route("api/[controller]")]
     [ApiController]
     public class CategoriesController : ControllerBase
