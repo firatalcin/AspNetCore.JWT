@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JWTApp.Back", "JWTApp.Back\JWTApp.Back.csproj", "{EF44DD73-7E47-4A43-B0D3-8897886AD9D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JWTApp.Back", "JWTApp.Back\JWTApp.Back.csproj", "{EF44DD73-7E47-4A43-B0D3-8897886AD9D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JWTApp.Front", "JWTApp.Front\JWTApp.Front.csproj", "{D76B43E5-1507-4715-8CE6-40E5F496546A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{EF44DD73-7E47-4A43-B0D3-8897886AD9D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF44DD73-7E47-4A43-B0D3-8897886AD9D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF44DD73-7E47-4A43-B0D3-8897886AD9D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D76B43E5-1507-4715-8CE6-40E5F496546A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D76B43E5-1507-4715-8CE6-40E5F496546A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D76B43E5-1507-4715-8CE6-40E5F496546A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D76B43E5-1507-4715-8CE6-40E5F496546A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
