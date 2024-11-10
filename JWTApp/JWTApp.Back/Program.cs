@@ -3,8 +3,11 @@ using JWTApp.Back.Core.Application.Interfaces;
 using JWTApp.Back.Core.Application.Mappings;
 using JWTApp.Back.Persistance.Context;
 using JWTApp.Back.Persistance.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
+using System.Text;
 
 namespace JWTApp.Back
 {
@@ -15,6 +18,23 @@ namespace JWTApp.Back
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(opt =>
+                {
+                    opt.RequireHttpsMetadata = false;
+                    opt.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                    {
+                        ValidateAudience = true,
+                        ValidateIssuer = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidAudience = builder.Configuration.GetSection("Token:Audience").Value.ToString(),
+                        ValidIssuer = builder.Configuration.GetSection("Token:Issuer").Value.ToString(),
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetSection("Token:Key").Value.ToString())),
+                        ValidateLifetime = true,
+                    };
+                });
+
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -48,6 +68,8 @@ namespace JWTApp.Back
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
