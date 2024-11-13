@@ -1,0 +1,36 @@
+﻿@model UserLoginModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Giriş Yap</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+</head>
+<body>
+    <div class="container">
+        <form class="w-75 m-5 p-3 shadow mx-auto" asp-controller="Account" asp-action="Login" method="post">
+            <div class="mb-3">
+                <label class="form-label" for="@Model.Username">Kullanıcı Adı:</label>
+                <span asp-validation-for="Username" class="text-danger"></span>
+                <input type="text" class="form-control" asp-for="Username"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="@Model.Password">Şifre:</label>
+                <span asp-validation-for="Password" class="text-danger"></span>
+                <input type="text" class="form-control" asp-for="Password" />
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-primary w-100">Giriş Yap</button>
+            </div>
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        </form>
+    </div>
+</body>
+</html>
+
+
