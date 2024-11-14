@@ -35,6 +35,7 @@ namespace JWTApp.Front
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(

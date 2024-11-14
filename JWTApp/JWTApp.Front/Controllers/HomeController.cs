@@ -1,9 +1,11 @@
 using JWTApp.Front.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace JWTApp.Front.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -21,6 +23,18 @@ namespace JWTApp.Front.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        [Authorize(Roles = "Admin")]
+        public string AdminPage()
+        {
+            return "Admin Page";
+        }
+
+        [Authorize(Roles= "Member")]
+        public string MemberPage()
+        {
+            return "Member Page";
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
