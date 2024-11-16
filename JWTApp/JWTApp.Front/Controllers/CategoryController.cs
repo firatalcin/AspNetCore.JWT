@@ -1,6 +1,7 @@
 ﻿using JWTApp.Front.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Text;
 using System.Text.Json;
 
 namespace JWTApp.Front.Controllers
@@ -52,6 +53,42 @@ namespace JWTApp.Front.Controllers
             }
 
             return RedirectToAction("List");
+        }
+
+        public IActionResult Create()
+        {
+            return View(new CreateCategoryModel());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(CreateCategoryModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var token = User.Claims.FirstOrDefault(x => x.Type == "accesToken")?.Value;
+                if (token != null)
+                {
+                    var client = _httpClientFactory.CreateClient();
+                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+
+                    var jsonData = JsonSerializer.Serialize(model);
+                    var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+                    var response = await client.PostAsync("http://localhost:5102/api/categories", content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("List");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Bir hata oluştu");
+                    }
+
+                }
+            }
+            return View(model);
         }
     }
 }
