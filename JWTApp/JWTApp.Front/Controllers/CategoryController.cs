@@ -40,5 +40,18 @@ namespace JWTApp.Front.Controllers
 
             return View();
         }
+
+        public async Task<IActionResult> Remove(int id)
+        {
+            var token = User.Claims.FirstOrDefault(x => x.Type == "accesToken")?.Value;
+            if (token != null)
+            {
+                var client = _httpClientFactory.CreateClient();
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                await client.DeleteAsync($"http://localhost:5102/api/categories/{id}");
+            }
+
+            return RedirectToAction("List");
+        }
     }
 }
