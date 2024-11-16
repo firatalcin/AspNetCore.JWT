@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JWTApp.Back.Controllers
 {
-    [Authorize(Roles = "Admin,Member")]
+    [Authorize(Roles = "Admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class CategoriesController : ControllerBase
