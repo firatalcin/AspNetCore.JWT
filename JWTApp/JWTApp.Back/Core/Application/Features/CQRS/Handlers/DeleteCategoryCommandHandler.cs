@@ -16,8 +16,9 @@ namespace JWTApp.Back.Core.Application.Features.CQRS.Handlers
 
         public async Task Handle(DeleteCategoryCommandRequest request, CancellationToken cancellationToken)
         {
-            var category =  await _repository.GetByIdAsync(request.Id);
-            if (category != null) {
+            var category = await _repository.GetByIdAsync(request.Id);
+            if (category != null)
+            {
                 await _repository.RemoveAsyc(category);
             }
         }

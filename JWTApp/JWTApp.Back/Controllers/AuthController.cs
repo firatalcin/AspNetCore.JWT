@@ -2,7 +2,6 @@
 using JWTApp.Back.Core.Application.Features.CQRS.Queries;
 using JWTApp.Back.Infrastructure.Tools;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JWTApp.Back.Controllers

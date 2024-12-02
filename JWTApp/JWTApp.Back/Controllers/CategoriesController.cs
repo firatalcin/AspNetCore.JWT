@@ -35,7 +35,7 @@ namespace JWTApp.Back.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateCategoryCommandRequest request)
         {
-            await _mediator.Send(request); 
+            await _mediator.Send(request);
             return Created("", request);
         }
 

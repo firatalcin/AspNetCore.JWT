@@ -17,7 +17,7 @@ namespace JWTApp.Back.Core.Application.Features.CQRS.Handlers
         public async Task Handle(UpdateProductCommandRequest request, CancellationToken cancellationToken)
         {
             var product = await _repository.GetByIdAsync(request.Id);
-            if (product != null) 
+            if (product != null)
             {
                 product.Name = request.Name;
                 product.Price = request.Price;

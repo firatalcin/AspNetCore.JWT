@@ -23,7 +23,7 @@ namespace JWTApp.Back.Core.Application.Features.CQRS.Handlers
 
             var user = await _userRepository.GetByFilterAsync(x => x.Username == request.Username && x.Password == request.Password);
 
-            if(user == null)
+            if (user == null)
             {
                 dto.IsExist = false;
             }

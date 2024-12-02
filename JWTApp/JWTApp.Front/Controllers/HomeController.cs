@@ -31,7 +31,7 @@ namespace JWTApp.Front.Controllers
             return "Admin Page";
         }
 
-        [Authorize(Roles= "Member")]
+        [Authorize(Roles = "Member")]
         public string MemberPage()
         {
             return "Member Page";

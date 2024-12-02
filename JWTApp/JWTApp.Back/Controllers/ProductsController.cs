@@ -1,6 +1,5 @@
 ﻿using JWTApp.Back.Core.Application.Features.CQRS.Commands;
 using JWTApp.Back.Core.Application.Features.CQRS.Queries;
-using JWTApp.Back.Core.Domain;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

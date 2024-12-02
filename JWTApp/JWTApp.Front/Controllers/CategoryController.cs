@@ -20,7 +20,7 @@ namespace JWTApp.Front.Controllers
         {
             var token = User.Claims.FirstOrDefault(x => x.Type == "accessToken")?.Value;
 
-            if(token != null)
+            if (token != null)
             {
                 var client = _httpClientFactory.CreateClient();
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);

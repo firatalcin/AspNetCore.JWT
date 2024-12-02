@@ -17,7 +17,7 @@ namespace JWTApp.Back.Core.Application.Features.CQRS.Handlers
         public async Task Handle(UpdateCategoryCommandRequest request, CancellationToken cancellationToken)
         {
             var category = await _repository.GetByIdAsync(request.Id);
-            if (category != null) 
+            if (category != null)
             {
                 category.Id = request.Id;
                 category.Definition = request.Definition;

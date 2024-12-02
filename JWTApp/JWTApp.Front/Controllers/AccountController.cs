@@ -41,14 +41,14 @@ namespace JWTApp.Front.Controllers
                         PropertyNamingPolicy = JsonNamingPolicy.CamelCase
                     });
 
-                    if(tokenModel != null)
+                    if (tokenModel != null)
                     {
                         JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
                         var token = handler.ReadJwtToken(tokenModel.Token);
 
                         var claims = token.Claims.ToList();
 
-                        if(tokenModel.Token != null)
+                        if (tokenModel.Token != null)
                         {
                             claims.Add(new Claim("accessToken", tokenModel.Token));
                         }

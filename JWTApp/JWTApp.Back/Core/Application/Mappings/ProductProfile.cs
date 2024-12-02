@@ -8,7 +8,7 @@ namespace JWTApp.Back.Core.Application.Mappings
     {
         public ProductProfile()
         {
-            CreateMap<Product,ProductListDto>().ReverseMap();
+            CreateMap<Product, ProductListDto>().ReverseMap();
         }
     }
 }
