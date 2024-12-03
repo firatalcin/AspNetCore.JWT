@@ -1,43 +1,50 @@
 ﻿using Application.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using Persistence.Context;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Persistence.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class, new()
     {
-        public Task CreateAsync(T entity)
+        private readonly AppDbContext _context;
+
+        public GenericRepository(AppDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task<List<T>> GetAllAsync()
+        public async Task CreateAsync(T entity)
         {
-            throw new NotImplementedException();
+            _context.Set<T>().Add(entity);
+            await _context.SaveChangesAsync();
         }
 
-        public Task<T?> GetByFilterAsync(Expression<Func<T, bool>> filter)
+        public async Task<List<T>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Set<T>().AsNoTracking().ToListAsync();
         }
 
-        public Task<T?> GetByIdAsync(object id)
+        public async Task<T?> GetByFilterAsync(Expression<Func<T, bool>> filter)
         {
-            throw new NotImplementedException();
+            return await _context.Set<T>().AsNoTracking().SingleOrDefaultAsync(filter);
         }
 
-        public Task RemoveAsyc(T entity)
+        public async Task<T?> GetByIdAsync(object id)
         {
-            throw new NotImplementedException();
+            return await _context.Set<T>().FindAsync(id);
         }
 
-        public Task UpdateAsync(T entity)
+        public async Task RemoveAsyc(T entity)
         {
-            throw new NotImplementedException();
+            _context.Set<T>().Remove(entity);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateAsync(T entity)
+        {
+            _context.Set<T>().Update(entity);
+            await _context.SaveChangesAsync();
         }
     }
 }
