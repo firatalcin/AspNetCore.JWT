@@ -1,6 +1,21 @@
-﻿namespace Application
+﻿using AutoMapper;
+using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
+
+namespace Application
 {
-    public class ServiceRegistration
+    public static class ServiceRegistration
     {
+        public static void AddApplicationServices(this IServiceCollection services)
+        {
+            services.AddMediatR(opt =>
+            {
+                opt.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+            });
+            services.AddAutoMapper(opt =>
+            {
+                opt.AddProfiles(new List<Profile> { });
+            });
+        }
     }
 }
