@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using Application.Mappings;
+using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -14,7 +15,11 @@ namespace Application
             });
             services.AddAutoMapper(opt =>
             {
-                opt.AddProfiles(new List<Profile> { });
+                opt.AddProfiles(new List<Profile>
+                {
+                    new CategoryProfile(),
+                    new ProductProfile()
+                });
             });
         }
     }
