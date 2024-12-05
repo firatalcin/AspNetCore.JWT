@@ -1,4 +1,5 @@
-﻿using Application.Features.CQRS.Queries;
+﻿using Application.Features.CQRS.Commands;
+using Application.Features.CQRS.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +29,13 @@ namespace WebAPI.Controllers
         {
             var result = await _mediator.Send(new GetCategoryQueryRequest(id));
             return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(CreateCategoryCommandRequest request)
+        {
+            await _mediator.Send(request);
+            return Created("", request);
         }
     }
 }
