@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Application.Features.CQRS.Commands
 {
-    public class DeleteProductCommandRequest : IRequest
+    public class UpdateProductCommandRequest : IRequest
     {
         public int Id { get; set; }
-        public DeleteProductCommandRequest(int id)
-        {
-            Id = id;
-        }
+        public string Name { get; set; }
+        public int Stock { get; set; }
+        public decimal Price { get; set; }
+        public int CategoryId { get; set; }
     }
 }

@@ -37,5 +37,19 @@ namespace WebAPI.Controllers
             await _mediator.Send(request);
             return Created("", request);
         }
+
+        [HttpPut]
+        public async Task<IActionResult> Update(UpdateProductCommandRequest request)
+        {
+            await _mediator.Send(request);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Remove(int id)
+        {
+            await _mediator.Send(new DeleteProductCommandRequest(id));
+            return NoContent();
+        }
     }
 }
