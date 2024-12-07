@@ -1,4 +1,5 @@
-﻿using Application.Features.CQRS.Queries;
+﻿using Application.Features.CQRS.Commands;
+using Application.Features.CQRS.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +30,13 @@ namespace WebAPI.Controllers
             {
                 return BadRequest("Kullanıcı adı veya şifre hatalı");
             }
+        }
+
+        [HttpPost("Register")]
+        public async Task<IActionResult> Register(RegisterUserCommandRequest request)
+        {
+            await _mediator.Send(request);
+            return Ok();
         }
     }
 }
