@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Persistence;
 using System.Text;
+using WebAPI.Tools;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -12,10 +13,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     opt.RequireHttpsMetadata = false;
     opt.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
     {
-        ValidAudience = "http://localhost",
-        ValidIssuer = "http://localhost",
+        ValidAudience = JwtTokenDefaults.ValidAudience,
+        ValidIssuer = JwtTokenDefaults.ValidIssuer,
         ClockSkew = TimeSpan.Zero,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("firatfiratfiratfirat1.")),
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtTokenDefaults.Key)),
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true
     };
